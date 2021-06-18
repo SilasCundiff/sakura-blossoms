@@ -10,6 +10,7 @@ export const SakuraSeedHueOptions = {
   purple: '281, 30%',
   pink: '349, 50%',
 };
+
 export const SakuraSeedLightnessOptions = {
   50: '95%',
   100: '90%',
