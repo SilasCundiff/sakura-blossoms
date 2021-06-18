@@ -1,16 +1,23 @@
 import React from 'react';
 import NavBar from './components/Navs/NavBar';
-import CustomThemeProvider from './components/CustomThemeProvider';
+import { ThemeBuilderProvider } from './components/ThemeBuilder/ThemeBuilderContext';
 import GlobalStyle from './GlobalStyles';
+import styled from 'styled-components';
+
+const StyledApp = styled.div`
+  height: 100vh;
+  background: ${(props) => props.theme.colors.secondaryColor};
+`;
+
 function App() {
   return (
-    <CustomThemeProvider>
-      <CustomThemeProvider.ThemeMenu />
-      <div className='App' style={{ background: '#232323', height: '100vh' }}>
+    <ThemeBuilderProvider>
+      <ThemeBuilderProvider.ThemeMenu />
+      <StyledApp>
         <NavBar />
-      </div>
+      </StyledApp>
       <GlobalStyle />
-    </CustomThemeProvider>
+    </ThemeBuilderProvider>
   );
 }
 

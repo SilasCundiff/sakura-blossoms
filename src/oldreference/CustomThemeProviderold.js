@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { styleBuilder } from '../helpers/styleBuilder';
-import { themeBuilder } from '../helpers/themeBuilder';
-import { ThemeBuilderProvider } from './ThemeBuilderContext';
+import { styleBuilder } from '../components/ThemeBuilder/ThemeBuilderHelpers/styleBuilder';
+import { themeBuilder } from '../components/ThemeBuilder/ThemeBuilderHelpers/themeBuilder';
+import { ThemeBuilderProvider } from './ThemeBuilderContextold';
 import { ThemeProvider } from 'styled-components';
 import { ThemeMenu } from './ThemeMenu/ThemeMenu';
 

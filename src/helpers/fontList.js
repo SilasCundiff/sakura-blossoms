@@ -1,1 +1,0 @@
-export const fontList = [  'Poppins', 'Pacifico', 'Exo', 'FredokaOne', 'Merriweather', 'Roboto'];

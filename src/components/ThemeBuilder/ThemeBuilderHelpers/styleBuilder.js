@@ -2,11 +2,11 @@ import WebFont from 'webfontloader';
 import {
   SakuraSeedHueOptions,
   SakuraSeedLightnessOptions,
-} from '../themes/SakuraSeedColorThemes';
+} from '../../../themes/SakuraSeedColorThemes';
 import {
   SakuraSeedPrimaryFontFace,
   SakuraSeedPrimaryFontWeights,
-} from '../themes/SakuraSeedFontThemes';
+} from '../../../themes/SakuraSeedFontThemes';
 
 const getHueValue = (value) => SakuraSeedHueOptions[value];
 const getLightnessValue = (value) => SakuraSeedLightnessOptions[value];
@@ -15,7 +15,6 @@ const getFontWeight = (value) => SakuraSeedPrimaryFontWeights[value];
 
 // Builds a selection of styles to send to the theme builder
 export const styleBuilder = (selectedStyles) => {
-  // Loads font Dynamically to reduce number of http requests on first page load
   const {
     primaryHue,
     primaryLightness,
@@ -26,6 +25,7 @@ export const styleBuilder = (selectedStyles) => {
     secondaryFont,
     secondaryFontWeight,
   } = selectedStyles;
+  // Loads font Dynamically to reduce number of http requests on first page load
   fontLoader(
     primaryFont,
     primaryFontWeight,
@@ -47,6 +47,7 @@ export const styleBuilder = (selectedStyles) => {
   return newStyles;
 };
 
+//TODO font weights unused
 const fontLoader = (
   primaryFont,
   primaryFontWeight,

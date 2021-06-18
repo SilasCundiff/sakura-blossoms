@@ -3,7 +3,7 @@ export const SakuraSeedPrimaryFontFace = {
   Pacifico: 'Pacifico',
   Poppins: 'Poppins',
   Exo: 'Exo',
-  FredokaOne: 'Fredoka One',
+  FredokaOne: 'FredokaOne',
   Merriweather: 'Merriweather',
   Roboto: 'Roboto',
 };
