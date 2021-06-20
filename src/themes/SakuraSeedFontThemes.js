@@ -8,13 +8,13 @@ export const SakuraSeedPrimaryFontFace = {
   Roboto: 'Roboto',
 };
 export const SakuraSeedPrimaryFontWeights = {
-  thinest: 100,
-  thin: 200,
-  lighter: 300,
-  light: 400,
-  regular: 500,
-  medium: 600,
-  bold: 700,
-  extraBold: 800,
-  black: 900,
+  100: 100,
+  200: 200,
+  300: 300,
+  400: 400,
+  500: 500,
+  600: 600,
+  700: 700,
+  800: 800,
+  900: 900,
 };

@@ -6,7 +6,7 @@ import styled from 'styled-components';
 
 const StyledApp = styled.div`
   height: 100vh;
-  background: ${(props) => props.theme.colors.secondaryColor};
+  background: ${(props) => props.theme.colors.secondaryHex}BF;
 `;
 
 function App() {

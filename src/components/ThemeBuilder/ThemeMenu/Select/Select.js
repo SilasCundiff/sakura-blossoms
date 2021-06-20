@@ -71,9 +71,7 @@ const CustomSelect = (props) => {
     value: `${presetID}`,
     label: `${presetName}`,
   });
-  console.log(`hue`, props.theme);
-  console.log(`presetThemes`, presetThemes);
-  console.log(`selection`, selection);
+
   const options = [
     ...presetThemes.map((preset) => {
       const presetObject = {
@@ -92,7 +90,6 @@ const CustomSelect = (props) => {
   };
 
   const handleChange = (e) => {
-    console.log(`e`, e);
     const index = e.value;
     setSelectedStyles({ ...presetThemes[index] });
     setselection({ ...e });

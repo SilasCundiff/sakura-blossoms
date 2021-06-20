@@ -1,28 +1,30 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import MiniDisplayBox from './MiniDisplayBox';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faRandom } from '@fortawesome/free-solid-svg-icons';
+
 const StyledOverrideBox = styled.div`
   flex: 1 1 100%;
   display: flex;
   flex-direction: column;
   padding: 4px 4px 0;
-  /* position: relative; */
+
   & h3 {
     font-size: 20px;
-    margin: auto;
-    margin-top: 8px;
+    margin: 8px auto 0;
   }
   & .overridesContainer {
     width: 100%;
     flex: 1 1 100%;
     display: grid;
-    /* grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(3, 1fr); */
+    grid-template-columns: auto;
+    grid-template-rows: auto;
     grid-template-areas:
-      '. . primary secondary'
-      'colors colors box1 box2'
-      'fonts fonts box3 box4';
-    gap: 0 8px;
+      '. . primary  swap  secondary'
+      'colors colors box1  swap1  box2'
+      'fonts fonts box3  swap2  box4';
+    gap: 4px 4px;
     margin-top: 4px;
   }
   & .primary {
@@ -40,6 +42,18 @@ const StyledOverrideBox = styled.div`
   }
   & .fonts {
     grid-area: fonts;
+  }
+  & .swap1,
+  .swap2 {
+    margin: auto;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  & .swap1 {
+    grid-area: swap1;
+  }
+  & .swap2 {
+    grid-area: swap2;
   }
   & .box1 {
     grid-area: box1;
@@ -61,13 +75,13 @@ const StyledOverrideBox = styled.div`
   }
   & .colors,
   .fonts {
-    font-size: 18px;
-    margin: auto;
+    font-size: 16px;
+    margin: 6px auto auto;
   }
   & .primary,
   .secondary {
     font-size: 14px;
-    margin: auto;
+    margin: auto auto 4px;
   }
   /* & .colorOverride,
   .fontOverride {
@@ -89,11 +103,13 @@ const PresetsOverrideBox = () => {
     PrimaryFontOpen: false,
     SecondaryFontOpen: false,
   });
+
   const handleClick = (key) => {
     const allBoxMenus = boxMenuOpen;
     Object.keys(allBoxMenus).forEach((v) => (allBoxMenus[v] = false));
     setboxMenuOpen({ ...allBoxMenus, [key]: true });
   };
+
   const closeAllBoxes = () => {
     setboxMenuOpen({
       PrimaryColorOpen: false,
@@ -107,18 +123,20 @@ const PresetsOverrideBox = () => {
     <StyledOverrideBox>
       <h3>Preset Overrides</h3>
       <div className='overridesContainer'>
-        <h5 className='Secondary'>Primary</h5>
+        <h5 className='primary'>Primary</h5>
         <h5 className='secondary'>Secondary</h5>
         <h5 className='colors'>Colors</h5>
         <h5 className='fonts'>Fonts</h5>
+
+        <FontAwesomeIcon className={`swap1`} icon={faRandom} size='lg' />
+        <FontAwesomeIcon className={`swap2`} icon={faRandom} size='lg' />
         <MiniDisplayBox
           handleClick={() => handleClick('PrimaryColorOpen')}
           open={boxMenuOpen.PrimaryColorOpen}
           closeAllBoxes={closeAllBoxes}
           className='box1'
           name='PrimaryColor'
-          id='Pc'
-          key='Pc'
+          type='hue'
         >
           Pc
         </MiniDisplayBox>
@@ -130,6 +148,7 @@ const PresetsOverrideBox = () => {
           name='SecondaryColor'
           id='Sc'
           key='Sc'
+          type='hue'
         >
           Sc
         </MiniDisplayBox>
@@ -141,6 +160,7 @@ const PresetsOverrideBox = () => {
           name='PrimaryFont'
           id='Pf'
           key='Pf'
+          type='font'
         >
           Pf
         </MiniDisplayBox>
@@ -152,6 +172,7 @@ const PresetsOverrideBox = () => {
           name='SecondaryFont'
           id='Sf'
           key='Sf'
+          type='font'
         >
           Sf
         </MiniDisplayBox>

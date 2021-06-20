@@ -3,12 +3,13 @@ import styled from 'styled-components';
 import Select from './Select/Select';
 import PresetsOverrideBox from './PresetsOverrideBox/PresetsOverrideBox';
 const StyledThemeMenu = styled.div`
-  height: 250px;
-  width: 220px;
+  height: 280px;
+  width: 230px;
   position: fixed;
   top: 8px;
   left: 8px;
   border-radius: 9px;
+  box-shadow: 5px 8px 7px 4px rgba(23, 23, 23, 0.4);
   padding: 8px;
   background: ${(props) => props.theme.colors.primaryColor};
   color: ${(props) => props.theme.colors.secondaryColor};

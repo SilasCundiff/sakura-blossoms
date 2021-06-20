@@ -13,6 +13,7 @@ const ThemeBuilderProvider = ({ children }) => {
   });
 
   const styles = styleBuilder(selectedStyles.presetStyles);
+
   const theme = themeBuilder({ ...styles });
 
   return (
