@@ -13,6 +13,7 @@ function App() {
   return (
     <ThemeBuilderProvider>
       <ThemeBuilderProvider.ThemeMenu />
+
       <StyledApp>
         <NavBar />
       </StyledApp>
