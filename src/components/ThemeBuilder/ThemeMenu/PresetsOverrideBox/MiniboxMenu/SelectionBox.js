@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
-const StyledHueBox = styled.div`
+const StyledBox = styled.div`
   height: 30px;
   width: 30px;
   margin: auto;
   border-radius: 5px;
-  background-color: hsl(${(props) => props.hue}, ${(props) => props.lightness});
+  background-color: ${(props) =>
+    props.hue
+      ? `hsl(${props.hue}, ${props.lightness})`
+      : props.theme.colors.primaryColor};
+  /* background-color: hsl(${(props) => props.hue}, ${(props) =>
+    props.lightness}); */
   color: white;
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: rgba(23, 23, 23, 0.8);
@@ -15,18 +20,18 @@ const StyledHueBox = styled.div`
     margin: auto;
   }
 `;
-const StyledFontBox = styled.div`
-  height: 30px;
-  width: 30px;
-  margin: auto;
-  border-radius: 5px;
-  background-color: ${(props) => props.theme.colors.primaryColor};
-  color: ${(props) => props.theme.colors.secondaryColor};
-  display: flex;
-  & .letterBox {
-    margin: auto;
-  }
-`;
+// const StyledFontBox = styled.div`
+//   height: 30px;
+//   width: 30px;
+//   margin: auto;
+//   border-radius: 5px;
+//   background-color: ${(props) => props.theme.colors.primaryColor};
+//   color: ${(props) => props.theme.colors.secondaryColor};
+//   display: flex;
+//   & .letterBox {
+//     margin: auto;
+//   }
+// `;
 const SelectionBox = ({
   children,
   hue,
@@ -34,19 +39,23 @@ const SelectionBox = ({
   font,
   weight,
   type,
-  selectedBox,
   handleClick,
   id,
+  isSelected,
 }) => {
   const [isHighlighted, setisHighlighted] = useState(false);
-  useEffect(() => {
-    if (selectedBox[id].selected) setisHighlighted(true);
-    if (!selectedBox[id].selected) setisHighlighted(false);
-  }, [selectedBox, id]);
-  // console.log(`isHighlighted, id`, isHighlighted, id);
 
-  return type === 'hue' ? (
-    <StyledHueBox
+  useEffect(() => {
+    if (isSelected) {
+      setisHighlighted(true);
+    }
+    if (!isSelected) {
+      setisHighlighted(false);
+    }
+  }, [isSelected, id, isHighlighted]);
+
+  return (
+    <StyledBox
       hue={hue}
       lightness={lightness}
       onClick={() => {
@@ -55,18 +64,7 @@ const SelectionBox = ({
       className={`${isHighlighted ? 'highlighted' : ''}`}
     >
       {children}
-    </StyledHueBox>
-  ) : (
-    <StyledFontBox
-      font={font}
-      weight={weight}
-      onClick={() => {
-        handleClick(id);
-      }}
-      className={`${selectedBox ? 'highlighted' : ''}`}
-    >
-      {children}
-    </StyledFontBox>
+    </StyledBox>
   );
 };
 

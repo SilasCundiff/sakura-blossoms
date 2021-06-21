@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import SelectionBox from './SelectionBox';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -7,15 +7,11 @@ import { useThemeBuilderContext } from '../../../ThemeBuilderContext';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 import { ColorBoxes, FontBoxes } from './BoxList';
+
 import {
   SakuraSeedHueOptions,
   SakuraSeedLightnessOptions,
 } from '../../../../../themes/SakuraSeedColorThemes';
-
-import {
-  SakuraSeedPrimaryFontFace,
-  SakuraSeedPrimaryFontWeights,
-} from '../../../../../themes/SakuraSeedFontThemes';
 
 const StyledMiniboxMenu = styled.div`
   position: absolute;
@@ -75,7 +71,6 @@ const StyledMiniboxMenu = styled.div`
       background-color: #fff;
       border-radius: 5px;
       margin: 0 4px 2.5%;
-
       color: black;
       & h5 {
         margin: 8px auto 0;
@@ -119,8 +114,9 @@ const StyledMiniboxMenu = styled.div`
     margin: auto 18px;
   }
   & .highlighted {
-    background-color: #000;
+    border: 2px solid rgba(23, 23, 23, 1);
   }
+
   ${({ open }) => {
     if (open) {
       return `
@@ -149,7 +145,23 @@ const StyledMiniboxMenu = styled.div`
 `;
 
 const MiniboxMenu = ({ closeAllBoxes, open, name, type }) => {
+  const initialState = {
+    0: { selected: false },
+    1: { selected: false },
+    2: { selected: false },
+    3: { selected: false },
+    4: { selected: false },
+    5: { selected: false },
+    6: { selected: false },
+    7: { selected: false },
+    8: { selected: false },
+    9: { selected: false },
+  };
+
   const { selectedStyles, setSelectedStyles } = useThemeBuilderContext();
+
+  const [value, setvalue] = useState(500);
+  const [isSelected, setisSelected] = useState(initialState);
 
   function handleOverride(changes) {
     setSelectedStyles({
@@ -159,19 +171,9 @@ const MiniboxMenu = ({ closeAllBoxes, open, name, type }) => {
       presetStyles: { ...changes },
     });
   }
-  const [value, setvalue] = useState(500);
-  const [selectedBox, setselectedBox] = useState(
-    type === 'hue' ? [...ColorBoxes] : [...FontBoxes]
-  );
 
   const handleClick = (id) => {
-    const tempArray = selectedBox;
-    tempArray.map((item) => {
-      return (item.selected = false);
-    });
-    tempArray[id].selected = true;
-    setselectedBox(tempArray);
-    console.log(`selectedBox`, selectedBox);
+    setisSelected({ ...initialState, [id]: { selected: true } });
   };
 
   const handleChange = (val) => {
@@ -184,9 +186,9 @@ const MiniboxMenu = ({ closeAllBoxes, open, name, type }) => {
       lightness={SakuraSeedLightnessOptions[value]}
       type={type}
       id={box.id}
-      selectedBox={selectedBox}
       handleClick={handleClick}
       key={`${box.id}${box.hue}`}
+      isSelected={isSelected[box.id].selected}
     >
       <div className='letterBox'>
         {box.hue.split('')[0].toUpperCase()}
@@ -194,13 +196,22 @@ const MiniboxMenu = ({ closeAllBoxes, open, name, type }) => {
       </div>
     </SelectionBox>
   ));
+
+  // <SelectionBox
+  //           hue={SakuraSeedHueOptions.gray}
+  //           lightness={SakuraSeedLightnessOptions[value]}
+  //           type={type}
+  //           id={0}
+  //           handleClick={handleClick}
+  //           isSelected={isSelected[0].selected}
+  //         ></SelectionBox>
   const listOfFontBoxes = FontBoxes.map((box) => (
     <SelectionBox
       type={type}
       id={box.id}
-      selectedBox={selectedBox}
       handleClick={handleClick}
       key={`${box.id}${box.hue}`}
+      isSelected={isSelected[box.id].selected}
     >
       <div className='letterBox'>
         {box.font.split('')[0]}
@@ -232,6 +243,86 @@ const MiniboxMenu = ({ closeAllBoxes, open, name, type }) => {
         </h4>
         <div className='selectionBoxesContainer'>
           {type === 'hue' ? listOfColorBoxes : listOfFontBoxes}
+          {/* <SelectionBox
+            hue={SakuraSeedHueOptions.gray}
+            lightness={SakuraSeedLightnessOptions[value]}
+            type={type}
+            id={0}
+            handleClick={handleClick}
+            isSelected={isSelected[0].selected}
+          ></SelectionBox>
+          <SelectionBox
+            hue={SakuraSeedHueOptions.red}
+            lightness={SakuraSeedLightnessOptions[value]}
+            type={type}
+            id={1}
+            handleClick={handleClick}
+            isSelected={isSelected[1].selected}
+          ></SelectionBox>
+          <SelectionBox
+            hue={SakuraSeedHueOptions.orange}
+            lightness={SakuraSeedLightnessOptions[value]}
+            type={type}
+            id={2}
+            handleClick={handleClick}
+            isSelected={isSelected[2].selected}
+          ></SelectionBox>
+          <SelectionBox
+            hue={SakuraSeedHueOptions.yellow}
+            lightness={SakuraSeedLightnessOptions[value]}
+            type={type}
+            id={3}
+            handleClick={handleClick}
+            isSelected={isSelected[3].selected}
+          ></SelectionBox>
+          <SelectionBox
+            hue={SakuraSeedHueOptions.green}
+            lightness={SakuraSeedLightnessOptions[value]}
+            type={type}
+            id={4}
+            handleClick={handleClick}
+            isSelected={isSelected[4].selected}
+          ></SelectionBox>
+          <SelectionBox
+            hue={SakuraSeedHueOptions.teal}
+            lightness={SakuraSeedLightnessOptions[value]}
+            type={type}
+            id={5}
+            handleClick={handleClick}
+            isSelected={isSelected[5].selected}
+          ></SelectionBox>
+          <SelectionBox
+            hue={SakuraSeedHueOptions.blue}
+            lightness={SakuraSeedLightnessOptions[value]}
+            type={type}
+            id={6}
+            handleClick={handleClick}
+            isSelected={isSelected[6].selected}
+          ></SelectionBox>
+          <SelectionBox
+            hue={SakuraSeedHueOptions.indigo}
+            lightness={SakuraSeedLightnessOptions[value]}
+            type={type}
+            id={7}
+            handleClick={handleClick}
+            isSelected={isSelected[7].selected}
+          ></SelectionBox>
+          <SelectionBox
+            hue={SakuraSeedHueOptions.purple}
+            lightness={SakuraSeedLightnessOptions[value]}
+            type={type}
+            id={8}
+            handleClick={handleClick}
+            isSelected={isSelected[8].selected}
+          ></SelectionBox>
+          <SelectionBox
+            hue={SakuraSeedHueOptions.pink}
+            lightness={SakuraSeedLightnessOptions[value]}
+            type={type}
+            id={9}
+            handleClick={handleClick}
+            isSelected={isSelected[9].selected}
+          ></SelectionBox> */}
         </div>
         <h4>
           Pick a{' '}
