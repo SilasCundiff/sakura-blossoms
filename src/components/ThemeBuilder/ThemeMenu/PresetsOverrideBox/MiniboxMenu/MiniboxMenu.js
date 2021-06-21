@@ -118,7 +118,9 @@ const StyledMiniboxMenu = styled.div`
     flex: 1 1 10%;
     margin: auto 18px;
   }
-
+  & .highlighted {
+    background-color: #000;
+  }
   ${({ open }) => {
     if (open) {
       return `
@@ -169,7 +171,6 @@ const MiniboxMenu = ({ closeAllBoxes, open, name, type }) => {
     });
     tempArray[id].selected = true;
     setselectedBox(tempArray);
-
     console.log(`selectedBox`, selectedBox);
   };
 
@@ -183,7 +184,7 @@ const MiniboxMenu = ({ closeAllBoxes, open, name, type }) => {
       lightness={SakuraSeedLightnessOptions[value]}
       type={type}
       id={box.id}
-      selectedBox={box.selected}
+      selectedBox={selectedBox}
       handleClick={handleClick}
       key={`${box.id}${box.hue}`}
     >
@@ -197,7 +198,7 @@ const MiniboxMenu = ({ closeAllBoxes, open, name, type }) => {
     <SelectionBox
       type={type}
       id={box.id}
-      selectedBox={box.selected}
+      selectedBox={selectedBox}
       handleClick={handleClick}
       key={`${box.id}${box.hue}`}
     >

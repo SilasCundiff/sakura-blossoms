@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 const StyledHueBox = styled.div`
@@ -38,6 +38,13 @@ const SelectionBox = ({
   handleClick,
   id,
 }) => {
+  const [isHighlighted, setisHighlighted] = useState(false);
+  useEffect(() => {
+    if (selectedBox[id].selected) setisHighlighted(true);
+    if (!selectedBox[id].selected) setisHighlighted(false);
+  }, [selectedBox, id]);
+  // console.log(`isHighlighted, id`, isHighlighted, id);
+
   return type === 'hue' ? (
     <StyledHueBox
       hue={hue}
@@ -45,7 +52,7 @@ const SelectionBox = ({
       onClick={() => {
         handleClick(id);
       }}
-      className={`${selectedBox ? 'highlighted' : ''}`}
+      className={`${isHighlighted ? 'highlighted' : ''}`}
     >
       {children}
     </StyledHueBox>
