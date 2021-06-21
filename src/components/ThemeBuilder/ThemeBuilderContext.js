@@ -1,4 +1,10 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  useCallback,
+} from 'react';
 import { styleBuilder } from './ThemeBuilderHelpers/styleBuilder';
 import { themeBuilder } from './ThemeBuilderHelpers/themeBuilder';
 import { presetThemes } from './ThemeBuilderHelpers/PresetThemes';
@@ -12,15 +18,21 @@ const ThemeBuilderProvider = ({ children }) => {
     ...presetThemes[Math.floor(Math.random() * presetThemes.length)],
   });
 
-  const styles = styleBuilder(selectedStyles.presetStyles);
+  const updatedTheme = useCallback(() => {
+    const styles = styleBuilder(selectedStyles.presetStyles);
+    const theme = themeBuilder({ ...styles });
+    return theme;
+  }, [selectedStyles]);
 
-  const theme = themeBuilder({ ...styles });
+  useEffect(() => {
+    updatedTheme();
+  }, [selectedStyles, updatedTheme]);
 
   return (
     <ThemeBuilderContext.Provider
-      value={{ theme, selectedStyles, setSelectedStyles, presetThemes }}
+      value={{ updatedTheme, selectedStyles, setSelectedStyles, presetThemes }}
     >
-      <ThemeProvider theme={theme}>{children}</ThemeProvider>
+      <ThemeProvider theme={updatedTheme}>{children}</ThemeProvider>
     </ThemeBuilderContext.Provider>
   );
 };

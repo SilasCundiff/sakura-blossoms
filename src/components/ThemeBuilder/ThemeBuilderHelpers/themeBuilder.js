@@ -1,6 +1,5 @@
 // Builds a theme object based on the selected styles. Pass to a theme provider.
 function HSLToHex(hsl) {
-  console.log(`hsl`, hsl);
   let sep = hsl.indexOf(',') > -1 ? ',' : ' ';
   hsl = hsl.substr(4).split(')')[0].split(sep);
 
@@ -75,7 +74,7 @@ export const themeBuilder = (styles) => {
 
   const primaryHex = HSLToHex(`hsl(${primaryHue}, ${primaryLightness})`);
   const secondaryHex = HSLToHex(`hsl(${secondaryHue}, ${secondaryLightness})`);
-  console.log(`secondaryHex`, secondaryHex);
+
   const theme = {
     colors: {
       primaryColor: `hsl(${primaryHue}, ${primaryLightness})`,

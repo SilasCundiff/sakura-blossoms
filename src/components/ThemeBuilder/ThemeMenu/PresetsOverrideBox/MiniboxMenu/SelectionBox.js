@@ -6,45 +6,38 @@ const StyledBox = styled.div`
   width: 30px;
   margin: auto;
   border-radius: 5px;
+  cursor: pointer;
   background-color: ${(props) =>
     props.hue
       ? `hsl(${props.hue}, ${props.lightness})`
       : props.theme.colors.primaryColor};
-  /* background-color: hsl(${(props) => props.hue}, ${(props) =>
-    props.lightness}); */
-  color: white;
-  -webkit-text-stroke-width: 1px;
-  -webkit-text-stroke-color: rgba(23, 23, 23, 0.8);
+
+  color: ${(props) =>
+    props.hue
+      ? `hsl(${props.hue}, ${
+          props.value <= 500
+            ? props.value === 500
+              ? '100%'
+              : `${props.value / 10 - 10}%`
+            : `${props.value / 10 + 10}%`
+        })`
+      : props.theme.colors.secondaryColor};
   display: flex;
   & .letterBox {
     margin: auto;
   }
 `;
-// const StyledFontBox = styled.div`
-//   height: 30px;
-//   width: 30px;
-//   margin: auto;
-//   border-radius: 5px;
-//   background-color: ${(props) => props.theme.colors.primaryColor};
-//   color: ${(props) => props.theme.colors.secondaryColor};
-//   display: flex;
-//   & .letterBox {
-//     margin: auto;
-//   }
-// `;
+
 const SelectionBox = ({
   children,
   hue,
   lightness,
-  font,
-  weight,
-  type,
   handleClick,
   id,
   isSelected,
+  value,
 }) => {
   const [isHighlighted, setisHighlighted] = useState(false);
-
   useEffect(() => {
     if (isSelected) {
       setisHighlighted(true);
@@ -62,6 +55,7 @@ const SelectionBox = ({
         handleClick(id);
       }}
       className={`${isHighlighted ? 'highlighted' : ''}`}
+      value={value}
     >
       {children}
     </StyledBox>

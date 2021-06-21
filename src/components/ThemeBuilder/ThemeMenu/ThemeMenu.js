@@ -17,6 +17,7 @@ const StyledThemeMenu = styled.div`
   font-weight: ${(props) => props.theme.fonts.secondaryFont.fontWeight};
   display: flex;
   flex-direction: column;
+  z-index: 100000;
   & .title {
     min-height: 40px;
     display: flex;

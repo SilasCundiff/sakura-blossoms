@@ -15,10 +15,11 @@ const StyledNav = styled.nav`
   display: flex;
   flex-direction: column;
   height: 100vh;
-  width: 100vw;
+  width: 30vw;
   background: ${(props) => props.theme.colors.primaryColor};
   position: fixed;
   inset: 0;
+  left: 30%;
   margin: 0;
   padding: 0;
   transition: all 0.5s;
