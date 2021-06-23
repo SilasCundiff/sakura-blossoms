@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import Select from './Select/Select';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import PresetsOverrideBox from './PresetsOverrideBox/PresetsOverrideBox';
 const StyledThemeMenu = styled.div`
   height: 280px;
-  width: 230px;
+  width: 250px;
   position: fixed;
   top: 8px;
-  left: 8px;
+  left: ${(props) => (props.ThemeMenuOpen ? '8px' : '-260px')};
   border-radius: 9px;
   box-shadow: 5px 8px 7px 4px rgba(23, 23, 23, 0.4);
   padding: 8px;
@@ -18,6 +20,7 @@ const StyledThemeMenu = styled.div`
   display: flex;
   flex-direction: column;
   z-index: 100000;
+  transition: left 1s cubic-bezier(0.68, -0.55, 0.27, 1.55);
   & .title {
     min-height: 40px;
     display: flex;
@@ -29,11 +32,29 @@ const StyledThemeMenu = styled.div`
       margin: 0 auto auto;
     }
   }
+  & .themeMenuToggler {
+    position: absolute;
+    right: ${(props) => (props.ThemeMenuOpen ? '12px' : '-36px')};
+    transform: ${(props) =>
+      props.ThemeMenuOpen ? 'rotate(180deg)' : 'rotate(0)'};
+    top: 8px;
+    color: ${(props) =>
+      props.ThemeMenuOpen
+        ? props.theme.colors.secondaryColor
+        : props.theme.colors.primaryColor};
+    transition: ${(props) =>
+      props.ThemeMenuOpen ? 'all .1s .1s' : 'all 0.5s .75s'};
+  }
 `;
 
 const ThemeMenu = () => {
+  const [ThemeMenuOpen, setThemeMenuOpen] = useState(false);
+
+  const handleClick = () => {
+    setThemeMenuOpen(!ThemeMenuOpen);
+  };
   return (
-    <StyledThemeMenu>
+    <StyledThemeMenu ThemeMenuOpen={ThemeMenuOpen}>
       <div className='title'>
         <h2>Preset Select</h2>
       </div>
@@ -41,6 +62,9 @@ const ThemeMenu = () => {
         <Select classNamePrefix={'Select'} />
       </div>
       <PresetsOverrideBox />
+      <div className='themeMenuToggler' onClick={handleClick}>
+        <FontAwesomeIcon className={`swap1`} icon={faChevronRight} size='lg' />
+      </div>
     </StyledThemeMenu>
   );
 };

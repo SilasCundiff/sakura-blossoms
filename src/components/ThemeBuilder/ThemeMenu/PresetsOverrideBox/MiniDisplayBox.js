@@ -15,7 +15,9 @@ const StyledMiniDisplayBox = styled.div`
   font-weight: ${(props) => props.theme.fonts.primaryFont.fontWeight};
   cursor: pointer;
   box-shadow: 0px 2px 4px 2px rgba(23, 23, 23, 0.3);
-  position: relative;
+  @media screen and (min-width: 900px) {
+    position: relative;
+  }
 `;
 
 const MiniDisplayBox = ({

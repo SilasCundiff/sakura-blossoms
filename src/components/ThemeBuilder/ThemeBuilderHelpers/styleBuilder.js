@@ -54,6 +54,11 @@ const fontLoader = (
   secondaryFont,
   secondaryFontWeight
 ) => {
+  // console.log(`primaryFont`, primaryFont);
+  // console.log(`secondaryFont`, secondaryFont);
+  if (primaryFont === 'FredokaOne') primaryFont = 'Fredoka+One';
+  if (secondaryFont === 'FredokaOne') secondaryFont = 'Fredoka+One';
+
   WebFont.load({
     google: {
       families: [

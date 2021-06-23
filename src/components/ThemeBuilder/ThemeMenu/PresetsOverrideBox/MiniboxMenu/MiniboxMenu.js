@@ -12,11 +12,13 @@ import {
   SakuraSeedHueOptions,
   SakuraSeedLightnessOptions,
 } from '../../../../../themes/SakuraSeedColorThemes';
+import FloatingMessageBox from '../../../../MessageBox/FloatingMessageBox';
 
 const StyledMiniboxMenu = styled.div`
   position: absolute;
-  top: -8px;
-  left: -8px;
+  top: 80%;
+  left: 50%;
+  transform: translateX(-50%);
   border-radius: 9px;
   padding: 8px;
   background: ${(props) => props.theme.colors.primaryHex}FF;
@@ -30,7 +32,11 @@ const StyledMiniboxMenu = styled.div`
   transform-origin: center;
   display: flex;
   flex-direction: column;
-
+  @media screen and (min-width: 900px) {
+    top: -8px;
+    left: -8px;
+    transform: translateX(0);
+  }
   & .closeIcon {
     position: absolute;
     right: 8px;
@@ -122,9 +128,9 @@ const StyledMiniboxMenu = styled.div`
       return `
         opacity: 1;
         visibility: visible;
-        height: 300px;
+        height: 320px;
         width: 220px; 
-        & * {
+        & .miniBoxMenuOptions * {
             opacity: 1;
             visibility: visible;
             transition: opacity 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55);
@@ -171,12 +177,18 @@ const MiniboxMenu = ({ closeAllBoxes, open, name, type }) => {
   };
 
   const { selectedStyles, setSelectedStyles } = useThemeBuilderContext();
-
   const [value, setvalue] = useState(500);
+  const [lightnessError, setlightnessError] = useState({
+    errorMessage:
+      'Do not set Primary and Secondary lightness values to 100 of each other as it will make some things impossible to see!',
+    showErrorMessage: false,
+  });
+
   const [isSelected, setisSelected] = useState(initialState);
 
   function handleOverride() {
-    //TODO add check to see if lightness is to close to opposing lightness
+    const { primaryLightness, secondaryLightness } =
+      selectedStyles.presetStyles;
     const firstKeyName =
       name.split(`${type === 'hue' ? 'C' : 'F'}`)[0].toLowerCase() +
       type.charAt(0).toUpperCase() +
@@ -184,6 +196,35 @@ const MiniboxMenu = ({ closeAllBoxes, open, name, type }) => {
     const secondKeyName =
       name.split(`${type === 'hue' ? 'C' : 'F'}`)[0].toLowerCase() +
       `${type === 'hue' ? 'Lightness' : 'FontWeight'}`;
+
+    if (secondKeyName === 'primaryLightness') {
+      if (
+        secondaryLightness === value ||
+        secondaryLightness === value + 100 ||
+        secondaryLightness === value - 100 ||
+        (value === 50 && secondaryLightness === 50)
+      ) {
+        setlightnessError({ ...lightnessError, showErrorMessage: true });
+        setTimeout(() => {
+          setlightnessError({ ...lightnessError, showErrorMessage: false });
+        }, 5000);
+        return;
+      }
+    }
+    if (secondKeyName === 'secondaryLightness') {
+      if (
+        primaryLightness === value ||
+        primaryLightness === value + 100 ||
+        primaryLightness === value - 100 ||
+        (value === 50 && primaryLightness === 50)
+      ) {
+        setlightnessError({ ...lightnessError, showErrorMessage: true });
+        setTimeout(() => {
+          setlightnessError({ ...lightnessError, showErrorMessage: false });
+        }, 5000);
+        return;
+      }
+    }
 
     let newValue;
     Object.keys(isSelected).forEach((index) => {
@@ -202,11 +243,11 @@ const MiniboxMenu = ({ closeAllBoxes, open, name, type }) => {
         [firstKeyName]: `${
           newValue ? newValue : selectedStyles.presetStyles[firstKeyName]
         }`,
-        [secondKeyName]: [value],
+        [secondKeyName]: value,
       },
     });
   }
-  // console.log(`selectedStyles`, selectedStyles, name);
+
   const handleClick = (id) => {
     setisSelected({
       ...initialState,
@@ -216,6 +257,10 @@ const MiniboxMenu = ({ closeAllBoxes, open, name, type }) => {
 
   const handleChange = (val) => {
     setvalue(val);
+  };
+
+  const handleErrorMessageClick = () => {
+    setlightnessError({ ...lightnessError, showErrorMessage: false });
   };
 
   const listOfColorBoxes = ColorBoxes.map((box) => (
@@ -229,10 +274,7 @@ const MiniboxMenu = ({ closeAllBoxes, open, name, type }) => {
       isSelected={isSelected[box.id].selected}
       value={value}
     >
-      <div className='letterBox'>
-        {box.hue.split('')[0].toUpperCase()}
-        {box.hue.split('')[1]}
-      </div>
+      <div className='letterBox'></div>
     </SelectionBox>
   ));
 
@@ -326,6 +368,13 @@ const MiniboxMenu = ({ closeAllBoxes, open, name, type }) => {
           <h5>{value}</h5>
         </div>
       </div>
+      <FloatingMessageBox
+        trigger={lightnessError.showErrorMessage}
+        handleErrorMessageClick={handleErrorMessageClick}
+      >
+        {lightnessError.errorMessage}
+      </FloatingMessageBox>
+
       <button className='miniBoxMenuSaveButton' onClick={handleOverride}>
         Save
       </button>

@@ -15,18 +15,18 @@ const StyledNav = styled.nav`
   display: flex;
   flex-direction: column;
   height: 100vh;
-  width: 30vw;
+  width: 100vw;
   background: ${(props) => props.theme.colors.primaryColor};
   position: fixed;
-  inset: 0;
-  left: 30%;
+  right: 0;
+  top: 0;
   margin: 0;
   padding: 0;
   transition: all 0.5s;
   clip-path: ${(props) =>
     props.navOpen
       ? 'circle(300% at 100% 0%)'
-      : 'circle(18px at calc(100% - 31.5px) calc(0% + 19.5px) )'};
+      : 'circle(20px at calc(100% - 31.5px) calc(0% + 23.5px) )'};
   overflow: hidden;
 `;
 

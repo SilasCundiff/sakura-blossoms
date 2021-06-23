@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import MiniDisplayBox from './MiniDisplayBox';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRandom } from '@fortawesome/free-solid-svg-icons';
-
+import { useThemeBuilderContext } from '../../ThemeBuilderContext';
 const StyledOverrideBox = styled.div`
   flex: 1 1 100%;
   display: flex;
@@ -83,20 +83,9 @@ const StyledOverrideBox = styled.div`
     font-size: 14px;
     margin: auto auto 4px;
   }
-  /* & .colorOverride,
-  .fontOverride {
-    width: 100%;
-    margin: auto;
-    display: flex;
-    align-items: center;
-    & span {
-      margin-right: auto;
-      margin-left: 8px;
-      font-size: 20px;
-    }
-  } */
 `;
 const PresetsOverrideBox = () => {
+  const { selectedStyles, setSelectedStyles } = useThemeBuilderContext();
   const [boxMenuOpen, setboxMenuOpen] = useState({
     PrimaryColorOpen: false,
     SecondaryColorOpen: false,
@@ -118,6 +107,46 @@ const PresetsOverrideBox = () => {
       SecondaryFontOpen: false,
     });
   };
+  const handleColorSwap = () => {
+    const tempPrimaryHue = selectedStyles.presetStyles.primaryHue;
+    const tempPrimaryLightness = selectedStyles.presetStyles.primaryLightness;
+    const tempSecondaryHue = selectedStyles.presetStyles.secondaryHue;
+    const tempSecondaryLightness =
+      selectedStyles.presetStyles.secondaryLightness;
+
+    setSelectedStyles({
+      ...selectedStyles,
+      presetName: 'Custom',
+      PresetID: 4,
+      presetStyles: {
+        ...selectedStyles.presetStyles,
+        primaryHue: `${tempSecondaryHue}`,
+        primaryLightness: tempSecondaryLightness,
+        secondaryHue: `${tempPrimaryHue}`,
+        secondaryLightness: tempPrimaryLightness,
+      },
+    });
+  };
+  const handleFontSwap = () => {
+    const tempPrimaryFont = selectedStyles.presetStyles.primaryFont;
+    const tempPrimaryFontWeight = selectedStyles.presetStyles.primaryFontWeight;
+    const tempSecondaryFont = selectedStyles.presetStyles.secondaryFont;
+    const tempSecondaryFontWeight =
+      selectedStyles.presetStyles.secondaryFontWeight;
+
+    setSelectedStyles({
+      ...selectedStyles,
+      presetName: 'Custom',
+      PresetID: 4,
+      presetStyles: {
+        ...selectedStyles.presetStyles,
+        primaryFont: `${tempSecondaryFont}`,
+        primaryFontWeight: tempSecondaryFontWeight,
+        secondaryFont: `${tempPrimaryFont}`,
+        secondaryFontWeight: tempPrimaryFontWeight,
+      },
+    });
+  };
 
   return (
     <StyledOverrideBox>
@@ -128,8 +157,18 @@ const PresetsOverrideBox = () => {
         <h5 className='colors'>Colors</h5>
         <h5 className='fonts'>Fonts</h5>
 
-        <FontAwesomeIcon className={`swap1`} icon={faRandom} size='lg' />
-        <FontAwesomeIcon className={`swap2`} icon={faRandom} size='lg' />
+        <FontAwesomeIcon
+          className={`swap1`}
+          icon={faRandom}
+          size='lg'
+          onClick={handleColorSwap}
+        />
+        <FontAwesomeIcon
+          className={`swap2`}
+          icon={faRandom}
+          size='lg'
+          onClick={handleFontSwap}
+        />
         <MiniDisplayBox
           handleClick={() => handleClick('PrimaryColorOpen')}
           open={boxMenuOpen.PrimaryColorOpen}

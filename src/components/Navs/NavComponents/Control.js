@@ -6,7 +6,7 @@ import { useNavContext } from '../NavContext';
 
 const StyledNavControl = styled.div`
   position: absolute;
-  top: 12px;
+  top: 16px;
   right: 24px;
   font-size: 16px;
   display: flex;
@@ -14,6 +14,7 @@ const StyledNavControl = styled.div`
   align-items: center;
   height: 16px;
   width: 16px;
+  padding: 8px;
   z-index: 1000;
   color: ${(props) => props.theme.colors.secondaryColor};
   .nav-control-open,
