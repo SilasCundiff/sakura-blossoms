@@ -1,7 +1,7 @@
 export const SakuraSeedHueOptions = {
   gray: '240, 6%',
   red: '360, 42%',
-  orange: '18, 42%',
+  orange: '18, 70%',
   yellow: '50, 57%',
   green: '112, 41%',
   teal: '173, 40%',

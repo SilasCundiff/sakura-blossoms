@@ -1,27 +1,37 @@
 import React from 'react';
 import Nav from './Nav';
-import Button from '../Buttons/Button';
+import Logo from '../Logos/Logo';
+import { Link } from 'react-router-dom';
 
 const NavBar = () => {
   return (
     <Nav>
       <Nav.Control />
-      <Nav.Logo>SakuraSeeds</Nav.Logo>
+      <Nav.Logo>
+        <Logo>SakuraSeeds</Logo>
+      </Nav.Logo>
+      <div
+        style={{
+          position: 'absolute',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          fontSize: '2rem',
+          background: 'white',
+          width: '80%',
+        }}
+      >
+        This nav is WIP and doesn't link to anything yet!
+      </div>
       <Nav.List>
         <Nav.ItemContainer>
-          <Nav.ListItem>Home</Nav.ListItem>
-          <Nav.ListItem>Work</Nav.ListItem>
+          <Nav.ListItem>
+            <Link to='/'>Home</Link>
+          </Nav.ListItem>
+          <Nav.ListItem>Info</Nav.ListItem>
           <Nav.ListItem>About</Nav.ListItem>
           <Nav.ListItem>Contact</Nav.ListItem>
         </Nav.ItemContainer>
-        <Nav.ButtonContainer>
-          <Button size={`small`} type={`pill`} inverted={false} ghost={false}>
-            Sign In
-          </Button>
-          <Button size={`small`} type={`pill`} inverted={true} ghost={true}>
-            Sign Up
-          </Button>
-        </Nav.ButtonContainer>
       </Nav.List>
       <Nav.Footer>copyright SakuraSeeds&copy; 2021</Nav.Footer>
     </Nav>

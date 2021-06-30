@@ -5,17 +5,15 @@ const StyledList = styled.ul`
   flex: 1 1 80%;
   width: 100%;
   max-height: 75%;
-  /* min-height: 75%; */
   margin: auto 0 0;
   padding: 0;
   text-decoration: none;
   list-style: none;
   display: flex;
   flex-direction: column-reverse;
-  background: ${(props) => props.theme.colors.primaryColor};
+  /* background: ${(props) => props.theme.colors.primaryColor}; */
   font-family: ${(props) => props.theme.fonts.secondaryFont.font};
   font-weight: ${(props) => props.theme.fonts.secondaryFont.fontWeight};
-  /* background: #000; */
 `;
 
 const List = ({ children }) => {

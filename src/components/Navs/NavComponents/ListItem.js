@@ -15,11 +15,7 @@ const StyledNavItem = styled.li`
 
 const ListItem = ({ children }) => {
   const { handleCloseNav } = useNavContext();
-  return (
-    <StyledNavItem onClick={handleCloseNav}>
-      <a href='/'>{children}</a>
-    </StyledNavItem>
-  );
+  return <StyledNavItem onClick={handleCloseNav}>{children}</StyledNavItem>;
 };
 
 export { ListItem };

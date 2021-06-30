@@ -152,28 +152,37 @@ const StyledMiniboxMenu = styled.div`
 
 const MiniboxMenu = ({ closeAllBoxes, open, name, type }) => {
   const initialState = {
-    0: { selected: false, boxValue: `${type === 'hue' ? 'gray' : 'Pacifico'}` },
-    1: { selected: false, boxValue: `${type === 'hue' ? 'red' : 'Poppins'}` },
-    2: { selected: false, boxValue: `${type === 'hue' ? 'orange' : 'Exo'}` },
+    0: { selected: false, boxValue: `${type === 'hue' ? 'gray' : 'Bitter'}` },
+    1: { selected: false, boxValue: `${type === 'hue' ? 'red' : 'Kufam'}` },
+    2: {
+      selected: false,
+      boxValue: `${type === 'hue' ? 'orange' : 'Literata'}`,
+    },
     3: {
       selected: false,
-      boxValue: `${type === 'hue' ? 'yellow' : 'FredokaOne'}`,
+      boxValue: `${type === 'hue' ? 'yellow' : 'Nunito'}`,
     },
     4: {
       selected: false,
-      boxValue: `${type === 'hue' ? 'green' : 'Merriweather'}`,
+      boxValue: `${type === 'hue' ? 'green' : 'Oldenburg'}`,
     },
-    5: { selected: false, boxValue: `${type === 'hue' ? 'teal' : 'Roboto'}` },
-    6: { selected: false, boxValue: `${type === 'hue' ? 'blue' : 'Poppins'}` },
+    5: { selected: false, boxValue: `${type === 'hue' ? 'teal' : 'Pacifico'}` },
+    6: {
+      selected: false,
+      boxValue: `${type === 'hue' ? 'blue' : 'Poppins'}`,
+    },
     7: {
       selected: false,
-      boxValue: `${type === 'hue' ? 'indigo' : 'Poppins'}`,
+      boxValue: `${type === 'hue' ? 'indigo' : 'Redressed'}`,
     },
     8: {
       selected: false,
-      boxValue: `${type === 'hue' ? 'purple' : 'Poppins'}`,
+      boxValue: `${type === 'hue' ? 'purple' : 'Trirong'}`,
     },
-    9: { selected: false, boxValue: `${type === 'hue' ? 'pink' : 'Poppins'}` },
+    9: {
+      selected: false,
+      boxValue: `${type === 'hue' ? 'pink' : 'ZillaSlab'}`,
+    },
   };
 
   const { selectedStyles, setSelectedStyles } = useThemeBuilderContext();

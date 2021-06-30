@@ -1,0 +1,73 @@
+export const heroImageURLList = [
+  {
+    id: 0,
+    name: 'gray mountains',
+    color: 'gray',
+    URL: '/assets/images/gray-linas-bam-q1X6ADPZl4w-unsplash',
+    // author: '',
+  },
+
+  {
+    id: 1,
+    name: 'red leaves',
+    color: 'red',
+    URL: '/assets/images/red-klim-musalimov--AS7i6dSzdA-unsplash',
+    // author: '',
+  },
+  {
+    id: 2,
+    name: 'close orange leaves',
+    color: 'orange',
+    URL: '/assets/images/orange-timothy-eberly-yuiJO6bvHi4-unsplash',
+    // author: '',
+  },
+  {
+    id: 3,
+    name: 'yellow roses',
+    color: 'yellow',
+    URL: '/assets/images/yellow-lobostudio-hamburg-MAjtbFMV5_k-unsplash',
+    // author: '',
+  },
+  {
+    id: 4,
+    name: 'green ferns',
+    color: 'green',
+    URL: '/assets/images/green-teemu-paananen-OOE4xAnBhKo-unsplash',
+    // author: '',
+  },
+  {
+    id: 5,
+    name: 'teal ocean',
+    color: 'teal',
+    URL: '/assets/images/teal-john-o-nolan-ykeLTANUQyE-unsplash',
+    // author: '',
+  },
+  {
+    id: 6,
+    name: 'close blue flowers',
+    color: 'blue',
+    URL: '/assets/images/blue-edson-rosas-PGlHOHssChE-unsplash',
+    // author: '',
+  },
+  {
+    id: 7,
+    name: 'indigo flowers',
+    color: 'indigo',
+    URL: '/assets/images/indigo-gaetano-cessati-CCy2UFLO1Mg-unsplash',
+    // author: '',
+  },
+  {
+    id: 8,
+    name: 'purple leaves',
+    color: 'purple',
+    URL: '/assets/images/purple-hybrid-gE1phX0Lbos-unsplash',
+    // author: '',
+  },
+  {
+    id: 9,
+    name: 'pink flowers',
+    color: 'pink',
+    URL: '/assets/images/pink-aaron-burden-FHWgqOniOSY-unsplash',
+    // author: '',
+  },
+];

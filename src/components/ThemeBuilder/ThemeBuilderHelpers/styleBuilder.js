@@ -54,10 +54,10 @@ const fontLoader = (
   secondaryFont,
   secondaryFontWeight
 ) => {
-  // console.log(`primaryFont`, primaryFont);
-  // console.log(`secondaryFont`, secondaryFont);
-  if (primaryFont === 'FredokaOne') primaryFont = 'Fredoka+One';
-  if (secondaryFont === 'FredokaOne') secondaryFont = 'Fredoka+One';
+  console.log(`primaryFont`, primaryFont);
+  console.log(`secondaryFont`, secondaryFont);
+  if (primaryFont === 'ZillaSlab') primaryFont = 'Zilla+Slab';
+  if (secondaryFont === 'ZillaSlab') secondaryFont = 'Zilla+Slab';
 
   WebFont.load({
     google: {

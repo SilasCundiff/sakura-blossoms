@@ -6,17 +6,21 @@ import { useNavContext } from '../NavContext';
 
 const StyledNavControl = styled.div`
   position: absolute;
-  top: 16px;
-  right: 24px;
+  top: 7px;
+  right: 15px;
   font-size: 16px;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 16px;
-  width: 16px;
-  padding: 8px;
+  height: 32px;
+  width: 32px;
+  padding: 24px;
+  cursor: pointer;
+  /* background: #000; */
+
+  border-radius: 50%;
   z-index: 1000;
-  color: ${(props) => props.theme.colors.secondaryColor};
+  color: ${(props) => props.theme.colors.primaryColor};
   .nav-control-open,
   .nav-control-close {
     position: absolute;

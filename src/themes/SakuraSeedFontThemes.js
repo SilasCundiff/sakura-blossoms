@@ -1,11 +1,15 @@
 // This is where a font is added to theme support
 export const SakuraSeedPrimaryFontFace = {
+  Bitter: 'Bitter',
+  Kufam: 'Kufam',
+  Literata: 'Literata',
+  Nunito: 'Nunito',
+  Oldenburg: 'Oldenburg',
   Pacifico: 'Pacifico',
   Poppins: 'Poppins',
-  Exo: 'Exo',
-  FredokaOne: 'Fredoka One',
-  Merriweather: 'Merriweather',
-  Roboto: 'Roboto',
+  Redressed: 'Redressed',
+  Trirong: 'Trirong',
+  ZillaSlab: 'Zilla Slab',
 };
 export const SakuraSeedPrimaryFontWeights = {
   100: 100,

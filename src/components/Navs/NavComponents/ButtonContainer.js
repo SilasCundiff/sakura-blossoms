@@ -4,11 +4,11 @@ import styled from 'styled-components';
 const StyledButtonContainer = styled.div`
   display: flex;
   width: 100%;
-  gap: 8px 0;
-  flex-wrap: wrap;
+  padding: 8px 0;
+  min-height: fit-content;
+  /* background: #fff; */
   & button {
     margin: auto;
-    flex: 0 0 35%;
   }
 `;
 

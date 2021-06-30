@@ -16,17 +16,18 @@ const StyledNav = styled.nav`
   flex-direction: column;
   height: 100vh;
   width: 100vw;
-  background: ${(props) => props.theme.colors.primaryColor};
+  background: ${(props) => props.theme.colors.secondaryColor};
   position: fixed;
   right: 0;
   top: 0;
   margin: 0;
   padding: 0;
   transition: all 0.5s;
+  z-index: 999;
   clip-path: ${(props) =>
     props.navOpen
       ? 'circle(300% at 100% 0%)'
-      : 'circle(20px at calc(100% - 31.5px) calc(0% + 23.5px) )'};
+      : 'circle(18px at calc(100% - 39px) calc(0% + 31px) )'};
   overflow: hidden;
 `;
 

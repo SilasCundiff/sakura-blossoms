@@ -34,10 +34,19 @@ const StyledThemeMenu = styled.div`
   }
   & .themeMenuToggler {
     position: absolute;
+    cursor: pointer;
+    padding: 8px;
     right: ${(props) => (props.ThemeMenuOpen ? '12px' : '-36px')};
+    background: ${({
+      ThemeMenuOpen,
+      theme: {
+        colors: { primaryColor, secondaryColor },
+      },
+    }) => `${ThemeMenuOpen ? primaryColor : secondaryColor}`};
+    border-radius: 5px;
     transform: ${(props) =>
       props.ThemeMenuOpen ? 'rotate(180deg)' : 'rotate(0)'};
-    top: 8px;
+    top: 0;
     color: ${(props) =>
       props.ThemeMenuOpen
         ? props.theme.colors.secondaryColor

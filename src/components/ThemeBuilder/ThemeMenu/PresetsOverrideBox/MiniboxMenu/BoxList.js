@@ -11,14 +11,14 @@ export const ColorBoxes = [
   { id: 9, hue: 'pink' },
 ];
 export const FontBoxes = [
-  { id: 0, font: 'Pacifico' },
-  { id: 1, font: 'Poppins' },
-  { id: 2, font: 'Exo' },
-  { id: 3, font: 'FredokaOne' },
-  { id: 4, font: 'Merriweather' },
-  { id: 5, font: 'Roboto' },
+  { id: 0, font: 'Bitter' },
+  { id: 1, font: 'Kufam' },
+  { id: 2, font: 'Literata' },
+  { id: 3, font: 'Nunito' },
+  { id: 4, font: 'Oldenburg' },
+  { id: 5, font: 'Pacifico' },
   { id: 6, font: 'Poppins' },
-  { id: 7, font: 'Poppins' },
-  { id: 8, font: 'Poppins' },
-  { id: 9, font: 'Poppins' },
+  { id: 7, font: 'Redressed' },
+  { id: 8, font: 'Trirong' },
+  { id: 9, font: 'ZillaSlab' },
 ];

@@ -4,23 +4,27 @@ import styled from 'styled-components';
 const RectangleButton = styled.button`
   background: inherit;
   color: inherit;
-  background: ${(props) =>
-    props.ghost
-      ? 'transparent'
-      : props.inverted
-      ? props.theme.colors.primaryColor
-      : props.theme.colors.secondaryColor};
+  background: ${({
+    ghost,
+    inverted,
+    theme: {
+      colors: { primaryColor, secondaryColor },
+    },
+  }) => (ghost ? 'transparent' : inverted ? primaryColor : secondaryColor)};
   /* Manual Background color theme override */
-  background: ${(props) =>
-    props.ghost
-      ? 'transparent'
-      : props.inverted
-      ? props.primaryColor
-      : props.secondaryColor};
-  color: ${(props) =>
-    props.inverted
-      ? props.theme.colors.secondaryColor
-      : props.theme.colors.primaryColor};
+  background: ${({
+    ghost,
+    inverted,
+    theme: {
+      colors: { primaryColor, secondaryColor },
+    },
+  }) => (ghost ? 'transparent' : inverted ? primaryColor : secondaryColor)};
+  color: ${({
+    inverted,
+    theme: {
+      colors: { primaryColor, secondaryColor },
+    },
+  }) => (inverted ? secondaryColor : primaryColor)};
   /* Manual Background color theme override */
   color: ${(props) =>
     props.inverted ? props.secondaryColor : props.primaryColor};
@@ -41,10 +45,17 @@ const RectangleButton = styled.button`
   text-decoration: none;
   display: inline-block;
   font-size: 32px;
-  border-radius: 5px;
   cursor: pointer;
+  max-width: fit-content;
+  min-width: fit-content;
+  max-height: fit-content;
+  min-height: fit-content;
   font-family: ${(props) => props.theme.fonts.primaryFont.font};
   font-weight: ${(props) => props.theme.fonts.primaryFont.fontWeight};
+  & a {
+    text-decoration: none;
+    color: inherit;
+  }
   ${({ size }) => {
     if (size === 'small') return `font-size: 12px;  padding: 12px 20px;`;
     if (size === 'regular') return `font-size: 16px;  padding: 12px 24px;`;
@@ -56,13 +67,6 @@ const RectangleButton = styled.button`
 const PillButton = styled.button`
   background: inherit;
   color: inherit;
-  /* box-sizing: border-box; */
-  &:after,
-  &::before {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-  }
   background: ${(props) =>
     props.ghost
       ? 'transparent'
@@ -102,9 +106,16 @@ const PillButton = styled.button`
   font-size: 16px;
   border-radius: 28px;
   cursor: pointer;
+  max-width: fit-content;
+  min-width: fit-content;
+  max-height: fit-content;
+  min-height: fit-content;
   font-family: ${(props) => props.theme.fonts.primaryFont.font};
   font-weight: ${(props) => props.theme.fonts.primaryFont.fontWeight};
-
+  & a {
+    text-decoration: none;
+    color: inherit;
+  }
   ${({ size, ghost }) => {
     if (size === 'small')
       return `font-size: 12px;  ${
