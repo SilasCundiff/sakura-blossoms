@@ -1,7 +1,6 @@
 import React from 'react';
 import Nav from './Nav';
 import Logo from '../Logos/Logo';
-import { Link } from 'react-router-dom';
 
 const NavBar = () => {
   return (
@@ -25,9 +24,7 @@ const NavBar = () => {
       </div>
       <Nav.List>
         <Nav.ItemContainer>
-          <Nav.ListItem>
-            <Link to='/'>Home</Link>
-          </Nav.ListItem>
+          <Nav.ListItem>Home</Nav.ListItem>
           <Nav.ListItem>Info</Nav.ListItem>
           <Nav.ListItem>About</Nav.ListItem>
           <Nav.ListItem>Contact</Nav.ListItem>

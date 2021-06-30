@@ -42,6 +42,9 @@ const StyledHome = styled.div`
     }) => {
       return `background: ${primaryColor}; color: ${secondaryColor}`;
     }};
+    /* display: flex;
+    justify-content: center;
+    height: 90vh; */
   }
 `;
 
@@ -80,6 +83,7 @@ function Home() {
     <StyledHome>
       <Hero>
         <Logo className='HomeLogo' height='32px' />
+
         <Headline>
           <Headline.Maintext>Grow Your Dreams.</Headline.Maintext>
           <Headline.Subtext>
@@ -101,7 +105,9 @@ function Home() {
       </Hero>
       <Divider direction='left' />
       <Container id='info' className='info'>
-        <Accordion items={infoItems} />
+        <Container size='sm' id='accordionWrapper' className='accordionWrapper'>
+          <Accordion items={infoItems} />
+        </Container>
       </Container>
     </StyledHome>
   );
