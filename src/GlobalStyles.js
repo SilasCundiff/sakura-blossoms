@@ -4,10 +4,16 @@ const GlobalStyle = createGlobalStyle`
   *, *::before, *::after {
     box-sizing: border-box;
   }
-  body, html, #root, .app {
+
+  html {
+    ${({ theme }) => `background: ${theme.colors.secondaryColor};`}
+    }
+  
+  body, .app {
     margin: 0;
-    padding: 0;
+    padding: 0;    
   }
+
   a {
     color: inherit;
   }

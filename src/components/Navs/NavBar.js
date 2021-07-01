@@ -9,7 +9,7 @@ const NavBar = () => {
       <Nav.Logo>
         <Logo>SakuraSeeds</Logo>
       </Nav.Logo>
-      <div
+      {/* <div
         style={{
           position: 'absolute',
           top: '50%',
@@ -21,13 +21,21 @@ const NavBar = () => {
         }}
       >
         This nav is WIP and doesn't link to anything yet!
-      </div>
+      </div> */}
       <Nav.List>
         <Nav.ItemContainer>
-          <Nav.ListItem>Home</Nav.ListItem>
-          <Nav.ListItem>Info</Nav.ListItem>
-          <Nav.ListItem>About</Nav.ListItem>
-          <Nav.ListItem>Contact</Nav.ListItem>
+          <Nav.ListItem>
+            <a href='#Home'>Home</a>
+          </Nav.ListItem>
+          <Nav.ListItem>
+            <a href='#Info'>Info</a>
+          </Nav.ListItem>
+          <Nav.ListItem>
+            <a href='#About'>About</a>
+          </Nav.ListItem>
+          <Nav.ListItem>
+            <a href='#Contact'>Contact</a>
+          </Nav.ListItem>
         </Nav.ItemContainer>
       </Nav.List>
       <Nav.Footer>copyright SakuraSeeds&copy; 2021</Nav.Footer>

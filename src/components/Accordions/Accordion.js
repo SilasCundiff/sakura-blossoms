@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const StyledAccordion = styled.div`
+  min-height: 100%;
   & h2 {
     margin: 0;
     padding: 0;
@@ -27,7 +28,6 @@ const StyledAccordion = styled.div`
     max-height: 0;
     opacity: 0;
     visibility: hidden;
-    transition: all 0.5s;
     ${({
       theme: {
         fonts: { secondaryFont },
@@ -36,7 +36,7 @@ const StyledAccordion = styled.div`
       `font-family: ${secondaryFont.font}; font-weight: ${secondaryFont.fontWeight}`}
   }
   & p.active {
-    max-height: 300%;
+    max-height: fit-content;
     opacity: 1;
     visibility: visible;
   }

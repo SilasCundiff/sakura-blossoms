@@ -11,6 +11,8 @@ import Container from '../components/Containers/Container';
 import Accordion from '../components/Accordions/Accordion';
 
 const StyledHome = styled.div`
+  display: flex;
+  justify-content: center;
   background: ${({
     theme: {
       colors: { secondaryColor, secondaryHex },
@@ -24,7 +26,6 @@ const StyledHome = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  /* height: 100vh; */
   & .HomeLogo {
     position: absolute;
     top: 16px;
@@ -35,6 +36,7 @@ const StyledHome = styled.div`
     margin: auto auto auto 12px;
   }
   & .info {
+    flex: 1 1 100%;
     ${({
       theme: {
         colors: { primaryColor, secondaryColor },
@@ -42,9 +44,9 @@ const StyledHome = styled.div`
     }) => {
       return `background: ${primaryColor}; color: ${secondaryColor}`;
     }};
-    /* display: flex;
-    justify-content: center;
-    height: 90vh; */
+  }
+  & .hero {
+    flex: 1 0 95vh;
   }
 `;
 
@@ -78,12 +80,11 @@ const infoItems = [
   },
 ];
 
-function Home() {
+function Home({ id }) {
   return (
-    <StyledHome>
-      <Hero>
+    <StyledHome id={id}>
+      <Hero className='hero'>
         <Logo className='HomeLogo' height='32px' />
-
         <Headline>
           <Headline.Maintext>Grow Your Dreams.</Headline.Maintext>
           <Headline.Subtext>
@@ -103,11 +104,9 @@ function Home() {
           </Headline.CTA>
         </Headline>
       </Hero>
-      <Divider direction='left' />
+      <Divider direction='left' className='divider' />
       <Container id='info' className='info'>
-        <Container size='sm' id='accordionWrapper' className='accordionWrapper'>
-          <Accordion items={infoItems} />
-        </Container>
+        <Accordion items={infoItems} />
       </Container>
     </StyledHome>
   );
